@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 
 # ── Page config ──────────────────────────────────────────────────
 st.set_page_config(page_title="Dashboard Medical Check-up", layout="wide")
@@ -11,7 +12,8 @@ st.markdown("Analisis pola kunjungan dan diagnosa pasien berdasarkan data rekam 
 # ── Load data ────────────────────────────────────────────────────
 @st.cache_data
 def load_data():
-    df = pd.read_csv("../data/dokter_all.csv")
+    base_dir = os.path.dirname(__file__)
+    df = pd.read_csv(os.path.join(base_dir, "../data/dokter_all.csv"))
     return df
 
 df = load_data()
